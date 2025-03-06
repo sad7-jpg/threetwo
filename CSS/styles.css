@@ -6,6 +6,7 @@ body {
 }
 
 .container {
+    position: relative;
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
@@ -21,9 +22,11 @@ body {
 }
 
 .header h1 {
+    text-align: center;
     margin: 0;
     font-size: 32px;
     margin-bottom: 10px;
+    padding: 0;
 }
 
 .header h2 {
@@ -164,4 +167,80 @@ h3 {
     color: #666;
     line-height: 1.6;
     margin-bottom: 10px;
+}
+
+/* 返回首页按钮样式 */
+.back-section {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    margin: 0;
+    z-index: 100;
+}
+
+.back-button {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 16px;
+    background-color: #f8f9fa;
+    color: #333;
+    text-decoration: none;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    border: 2px solid #e9ecef;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.back-button:before {
+    content: "←";
+    margin-right: 6px;
+    font-size: 16px;
+}
+
+.back-button:hover {
+    background-color: #e9ecef;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* 移动端适配 */
+@media (max-width: 768px) {
+    .back-section {
+        position: fixed;
+        top: auto;
+        right: auto;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .back-button {
+        background-color: #fff;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        padding: 10px 20px;
+        font-size: 16px;
+    }
+
+    .back-button:hover {
+        transform: translateX(0) translateY(-2px);
+    }
+}
+
+/* 添加页面标题样式 */
+.container > h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 30px;
+    padding: 20px 0;
+    font-size: 28px;
+}
+
+/* 确保其他标题不受影响 */
+.header h1 {
+    text-align: center;
+    margin: 0;
+    font-size: 32px;
+    margin-bottom: 10px;
+    padding: 0;
 } 
