@@ -14,25 +14,151 @@ body {
 
 .header {
     text-align: center;
-    padding: 40px 0;
-    background-color: #2196F3;
+    padding: 10px;
+    background: linear-gradient(135deg, #2196F3, #1976D2);
     color: white;
-    border-radius: 8px;
-    margin-bottom: 30px;
+    border-radius: 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 15px rgba(33, 150, 243, 0.3);
 }
 
-.header h1 {
-    text-align: center;
+.header-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.school-info h1 {
+    font-size: 36px;
     margin: 0;
-    font-size: 32px;
     margin-bottom: 10px;
-    padding: 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    letter-spacing: 2px;
 }
 
-.header h2 {
-    margin: 0;
+.school-info h2 {
     font-size: 24px;
-    font-weight: normal;
+    margin: 0;
+    font-weight: 400;
+    opacity: 0.9;
+    letter-spacing: 1px;
+}
+
+/* 通知栏样式 */
+.notice-section {
+    margin:15px 0 ;
+}
+
+.notice-container {
+    display: flex;
+    justify-content: center;
+}
+
+.notice-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+    padding: 20px 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    width: 100%;
+    max-width: 1200px;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(33, 150, 243, 0.1);
+}
+
+.notice-box:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px rgba(33, 150, 243, 0.15);
+}
+
+.notice-left {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.notice-icon {
+    position: relative;
+}
+
+.icon-circle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, #E3F2FD, #BBDEFB);
+    border-radius: 50%;
+    font-size: 24px;
+    animation: pulse 2s infinite;
+}
+
+.notice-text {
+    flex: 1;
+}
+
+.notice-title {
+    font-size: 14px;
+    color: #2196F3;
+    margin: 0 0 5px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.notice-content {
+    font-size: 16px;
+    color: #333;
+    margin: 0;
+    line-height: 1.5;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(33, 150, 243, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(33, 150, 243, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(33, 150, 243, 0);
+    }
+}
+
+@keyframes blink {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.6;
+    }
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .notice-box {
+        flex-direction: column;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .notice-left {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .notice-right {
+        margin: 20px 0 0;
+    }
+
+    .notice-meta {
+        justify-content: center;
+    }
+
+    .notice-more {
+        width: 100%;
+    }
 }
 
 .content-section {
@@ -40,18 +166,44 @@ body {
     gap: 30px;
 }
 
-.announcement {
-    background: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+.announcements-container {
+    display: flex;
+    gap: 20px;
 }
 
-.notice-box {
-    background-color: #fff3e0;
+.announcement, .homework-notice {
+    flex: 1;
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.homework-box {
+    background-color: #f8f9fa;
+    border-radius: 8px;
     padding: 15px;
-    border-radius: 4px;
-    border-left: 4px solid #ff9800;
+}
+
+.homework-item {
+    padding: 10px 0;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.homework-item:last-child {
+    border-bottom: none;
+}
+
+.homework-item .date {
+    font-size: 0.9em;
+    color: #6c757d;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.homework-item .homework-content {
+    margin: 0;
+    color: #333;
 }
 
 .resources {
@@ -225,21 +377,54 @@ h3 {
     .back-button:hover {
         transform: translateX(0) translateY(-2px);
     }
+
+    .announcements-container {
+        flex-direction: column;
+    }
+
+    .announcement, .homework-notice {
+        width: 100%;
+    }
+
+    .header {
+        padding: 30px 20px;
+        border-radius: 10px;
+    }
+
+    .school-info h1 {
+        font-size: 28px;
+    }
+
+    .school-info h2 {
+        font-size: 20px;
+    }
+
+    .notice-box {
+        flex-direction: column;
+        text-align: center;
+        padding: 15px;
+    }
+
+    .notice-icon {
+        margin: 0 0 10px 0;
+    }
+
+    .notice-text {
+        text-align: center;
+    }
 }
 
 /* 添加页面标题样式 */
 .container > h1 {
     text-align: center;
     color: #333;
-    margin-bottom: 30px;
-    padding: 20px 0;
     font-size: 28px;
 }
 
 /* 确保其他标题不受影响 */
 .header h1 {
     text-align: center;
-    margin: 0;
+    margin: 10px;
     font-size: 32px;
     margin-bottom: 10px;
     padding: 0;
