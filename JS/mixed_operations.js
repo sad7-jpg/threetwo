@@ -234,6 +234,13 @@ function generateQuestions() {
     updateTimer();
     timerInterval = setInterval(updateTimer, 1000);
 
+    // 重新启用显示答案按钮
+    document.getElementById('show-answers').disabled = false;
+    
+    // 清空结果
+    document.getElementById('result').textContent = '';
+    document.getElementById('score').textContent = '';
+
     // 生成10道题
     for (let i = 0; i < 10; i++) {
         const questionData = generateQuestion();
@@ -243,7 +250,7 @@ function generateQuestions() {
         questionDiv.className = 'question';
         questionDiv.innerHTML = `
             <div class="question-content">
-                ${i + 1}. ${questionData.question} = 
+                <span class="question-text">${i + 1}. ${questionData.question} = </span>
                 <input type="number" id="answer${i}">
                 <span class="answer-text" id="answer-text${i}" style="display: none;">
                     ${questionData.answer}
@@ -252,10 +259,6 @@ function generateQuestions() {
         `;
         questionsContainer.appendChild(questionDiv);
     }
-
-    // 清空结果
-    document.getElementById('result').textContent = '';
-    document.getElementById('score').textContent = '';
 }
 
 // 更新计时器
@@ -310,6 +313,12 @@ function showAnswers() {
         const answerText = document.getElementById(`answer-text${i}`);
         answerText.style.display = 'inline';
     }
+    
+    // 停止计时器
+    if (timerInterval) {
+        clearInterval(timerInterval);
+    }
+    
     // 禁用显示答案按钮
     document.getElementById('show-answers').disabled = true;
 }

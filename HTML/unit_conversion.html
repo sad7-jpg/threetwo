@@ -4,137 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>单位练习</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #f0f8ff;
-        }
-        .section {
-            background-color: white;
-            padding: 20px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            position: relative;
-        }
-        .section-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-            border-bottom: 2px solid #eee;
-            padding-bottom: 10px;
-        }
-        .section-header h2 {
-            color: #2c3e50;
-            margin: 0;
-        }
-        .question {
-            font-size: 1.2em;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .comparison-section {
-            text-align: center;
-        }
-        .comparison-section .question {
-            justify-content: center;
-            font-size: 1.5em;
-            margin: 20px 0;
-        }
-        input {
-            font-size: 1.1em;
-            padding: 8px;
-            margin: 5px;
-            border: 2px solid #ddd;
-            border-radius: 5px;
-            transition: border-color 0.3s;
-        }
-        input:focus {
-            outline: none;
-            border-color: #4CAF50;
-        }
-        button {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 1.1em;
-            margin: 5px;
-            transition: background-color 0.3s;
-        }
-        button:hover {
-            background-color: #45a049;
-            transform: translateY(-1px);
-        }
-        .result {
-            margin-top: 15px;
-            font-weight: bold;
-            padding: 10px;
-            border-radius: 5px;
-            text-align: center;
-        }
-        .correct {
-            color: #2ecc71;
-            background-color: #eafaf1;
-        }
-        .incorrect {
-            color: #e74c3c;
-            background-color: #fdedec;
-        }
-        .comparison-buttons {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            margin: 20px 0;
-        }
-        .comparison-buttons button {
-            width: 60px;
-            height: 60px;
-            font-size: 1.5em;
-            border-radius: 50%;
-            padding: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        .refresh-button {
-            padding: 5px 15px;
-            font-size: 0.9em;
-            background-color: #3498db;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        .refresh-button:hover {
-            background-color: #2980b9;
-        }
-        .unit-input {
-            width: 80px;
-            margin-left: 10px;
-        }
-        .target-unit {
-            font-weight: bold;
-            color: #2c3e50;
-            margin: 0 10px;
-        }
-        h1 {
-            color: #2c3e50;
-            text-align: center;
-            margin-bottom: 30px;
-            font-size: 2em;
-        }
-        .back-home {
-            text-align: center;
-            margin-top: 20px;
-        }
-    </style>
+    <link rel="stylesheet" href="../CSS/styles.css">
+    <link rel="stylesheet" href="../CSS/unit_conversion.css">
 </head>
 <body>
     <h1>单位练习</h1>
@@ -146,7 +17,9 @@
         </div>
         <div class="question">
             <span id="unitQuestion"></span>
-            <input type="text" id="unitAnswer" placeholder="单位" class="unit-input">
+            <div class="input-unit-group">
+                <input type="text" id="unitAnswer" placeholder="单位" class="unit-input">
+            </div>
             <button onclick="checkUnitAnswer()">检查答案</button>
         </div>
         <div id="unitResult" class="result"></div>
@@ -173,8 +46,10 @@
         </div>
         <div class="question">
             <span id="integerQuestion"></span>
-            <input type="number" id="integerAnswer" placeholder="数字">
-            <span id="integerTargetUnit" class="target-unit"></span>
+            <div class="input-unit-group">
+                <input type="number" id="integerAnswer" placeholder="数字">
+                <span id="integerTargetUnit" class="target-unit"></span>
+            </div>
             <button onclick="checkIntegerAnswer()">检查答案</button>
         </div>
         <div id="integerResult" class="result"></div>
@@ -187,8 +62,10 @@
         </div>
         <div class="question">
             <span id="decimalQuestion"></span>
-            <input type="number" id="decimalAnswer" placeholder="数字" step="0.001">
-            <span id="decimalTargetUnit" class="target-unit"></span>
+            <div class="input-unit-group">
+                <input type="number" id="decimalAnswer" placeholder="数字" step="0.001">
+                <span id="decimalTargetUnit" class="target-unit"></span>
+            </div>
             <button onclick="checkDecimalAnswer()">检查答案</button>
         </div>
         <div id="decimalResult" class="result"></div>

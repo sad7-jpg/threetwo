@@ -102,15 +102,21 @@ function checkResult() {
         
         const resultDiv = document.getElementById('result');
         if (Math.abs(result - 24) < 0.000001) {
-            resultDiv.textContent = '恭喜你！答对了！';
+            resultDiv.innerHTML = '<span>🎉 太棒了！</span> 你的答案完全正确！你真是个数学小天才！';
             resultDiv.className = 'result correct';
         } else {
-            resultDiv.textContent = '答案不是24，请继续尝试！';
-            resultDiv.className = 'result incorrect';
+            const diff = Math.abs(result - 24);
+            if (diff < 3) {
+                resultDiv.innerHTML = `<span>👍 很接近了！</span> 你的答案是 ${result}，离24还差 ${diff.toFixed(2)}，再试一试！`;
+                resultDiv.className = 'result incorrect';
+            } else {
+                resultDiv.innerHTML = `<span>🤔 需要再思考一下</span> 你的表达式计算结果是 ${result}，离目标值24还有距离。`;
+                resultDiv.className = 'result incorrect';
+            }
         }
     } catch (e) {
         const resultDiv = document.getElementById('result');
-        resultDiv.textContent = '表达式有误，请检查！';
+        resultDiv.innerHTML = '<span>❗ 表达式有误</span> 请检查你输入的表达式，确保格式正确！';
         resultDiv.className = 'result incorrect';
     }
 }
@@ -119,6 +125,7 @@ function checkResult() {
 function findSolution(numbers) {
     const operators = ['+', '-', '*', '/'];
     const solutions = [];
+    const detailedSolutions = []; // 存储详细的计算过程
     
     function calculate(a, b, operator) {
         switch(operator) {
@@ -129,9 +136,19 @@ function findSolution(numbers) {
         }
     }
     
-    function solve(nums) {
+    function getOperatorSymbol(op) {
+        switch(op) {
+            case '+': return '+';
+            case '-': return '-';
+            case '*': return '×';
+            case '/': return '÷';
+        }
+    }
+    
+    function solve(nums, history = []) {
         if (nums.length === 1) {
             if (Math.abs(nums[0] - 24) < 0.000001) {
+                detailedSolutions.push(history);
                 return true;
             }
             return false;
@@ -147,8 +164,9 @@ function findSolution(numbers) {
                     const result = calculate(a, b, operator);
                     if (!isNaN(result)) {
                         const newNums = [...remainingNums, result];
-                        if (solve(newNums)) {
-                            solutions.push(`${a} ${operator} ${b}`);
+                        const step = `${a} ${getOperatorSymbol(operator)} ${b} = ${result}`;
+                        if (solve(newNums, [...history, step])) {
+                            solutions.push(`${a} ${getOperatorSymbol(operator)} ${b}`);
                             return true;
                         }
                     }
@@ -159,17 +177,27 @@ function findSolution(numbers) {
     }
     
     solve(numbers);
-    return solutions;
+    return { solutions, detailedSolutions };
 }
 
 // 显示提示
 function showSolution() {
-    const solutions = findSolution(currentNumbers);
+    const { solutions, detailedSolutions } = findSolution(currentNumbers);
     const solutionDiv = document.getElementById('solution');
-    if (solutions.length > 0) {
-        solutionDiv.textContent = `提示：可以尝试 ${solutions[0]}`;
+    
+    if (solutions.length > 0 && detailedSolutions.length > 0) {
+        const steps = detailedSolutions[0];
+        let solutionHtml = '<span>💡 解题思路：</span><br>';
+        
+        // 显示详细的解题步骤
+        steps.forEach((step, index) => {
+            solutionHtml += `<div class="solution-step">步骤 ${index + 1}：${step}</div>`;
+        });
+        
+        solutionHtml += '<div class="solution-tip">使用括号和适当的顺序可能会有多种解法哦！</div>';
+        solutionDiv.innerHTML = solutionHtml;
     } else {
-        solutionDiv.textContent = '这组数字可能没有解法，请尝试新游戏';
+        solutionDiv.innerHTML = '<span>🔄 挑战一下</span><br>这组数字可能比较难，或者没有精确解法。试试新游戏吧！';
     }
     solutionDiv.style.display = 'block';
 }

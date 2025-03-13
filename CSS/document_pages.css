@@ -1,0 +1,136 @@
+/* Document Pages Styles */
+
+/* Container modifications */
+.container > h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 30px;
+    font-size: 28px;
+}
+
+/* Document preview styles */
+.document-preview {
+    margin-bottom: 30px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.pdf-fallback {
+    padding: 40px 20px;
+    text-align: center;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border: 2px dashed #ddd;
+}
+
+.pdf-fallback p {
+    margin: 10px 0;
+    color: #666;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+/* Download section styles */
+.download-section {
+    text-align: center;
+    margin: 30px 0;
+}
+
+.download-tip {
+    color: #666;
+    margin-bottom: 15px;
+    font-size: 16px;
+}
+
+.download-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #FF9E2C;
+    color: white;
+    text-decoration: none;
+    padding: 12px 25px;
+    border-radius: 50px;
+    font-size: 16px;
+    font-weight: bold;
+    box-shadow: 0 4px 12px rgba(255, 158, 44, 0.3);
+    transition: all 0.3s ease;
+}
+
+.download-button:hover {
+    background-color: #F08C00;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(255, 158, 44, 0.4);
+}
+
+.download-icon {
+    margin-left: 10px;
+    font-size: 20px;
+}
+
+/* Back section styles */
+.back-section {
+    text-align: center;
+    margin: 30px 0;
+}
+
+.back-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #7295E8;
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 50px;
+    font-size: 16px;
+    font-weight: bold;
+    box-shadow: 0 4px 12px rgba(114, 149, 232, 0.3);
+    transition: all 0.3s ease;
+}
+
+.back-button:hover {
+    background-color: #5A7AD6;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(114, 149, 232, 0.4);
+}
+
+.back-button::before {
+    content: "←";
+    margin-right: 8px;
+    font-size: 18px;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .document-preview {
+        margin: 0 -10px 20px;
+    }
+    
+    object[type="application/pdf"] {
+        height: 400px;
+    }
+    
+    .download-button, .back-button {
+        width: 100%;
+        max-width: 300px;
+        margin: 0 auto;
+    }
+    
+    .container > h1 {
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    object[type="application/pdf"] {
+        height: 350px;
+    }
+    
+    .download-button, .back-button {
+        padding: 10px 15px;
+        font-size: 14px;
+    }
+} 

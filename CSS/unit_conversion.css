@@ -1,0 +1,359 @@
+/* 单位转换页面样式 */
+
+/* 全局盒模型设置 */
+* {
+    box-sizing: border-box;
+    max-width: 100%;
+}
+
+html, body {
+    overflow-x: hidden;
+    width: 100%;
+    position: relative;
+}
+
+body {
+    font-family: 'Microsoft YaHei', Arial, sans-serif;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 15px;
+    background-color: #f0f8ff;
+    color: #2c3e50;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+h1 {
+    color: #2c3e50;
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2em;
+    width: 100%;
+}
+
+/* 各个部分的通用样式 */
+.section {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    position: relative;
+    width: 100%;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+.section-header h2 {
+    color: #2c3e50;
+    margin: 0;
+    font-size: 1.3em;
+}
+
+.question {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+/* 输入框和单位的包装器 */
+.input-unit-group {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: 5px;
+    width: auto;
+    max-width: 100%;
+}
+
+/* 比较部分样式 */
+.comparison-section {
+    text-align: center;
+}
+
+.comparison-section .question {
+    justify-content: center;
+    font-size: 1.5em;
+    margin: 20px 0;
+}
+
+.comparison-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin: 20px 0;
+    flex-wrap: wrap;
+}
+
+.comparison-buttons button {
+    width: 60px;
+    height: 60px;
+    font-size: 1.5em;
+    border-radius: 50%;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    background-color: #7295E8;
+}
+
+.comparison-buttons button:hover {
+    background-color: #5A7AD6;
+}
+
+/* 表单元素样式 */
+input {
+    font-size: 1.1em;
+    padding: 8px;
+    margin: 5px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    transition: border-color 0.3s;
+    max-width: 100%;
+}
+
+input:focus {
+    outline: none;
+    border-color: #FF9E2C;
+}
+
+.unit-input {
+    width: 80px;
+    margin-left: 10px;
+}
+
+.target-unit {
+    font-weight: bold;
+    color: #2c3e50;
+    margin: 0 10px;
+    white-space: nowrap;
+}
+
+/* 按钮样式 */
+button {
+    background-color: #FF9E2C;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 1.1em;
+    margin: 5px;
+    transition: all 0.3s ease;
+    font-weight: bold;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+button:hover {
+    background-color: #F08C00;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.refresh-button {
+    padding: 8px 15px;
+    font-size: 0.9em;
+    background-color: #7295E8;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.refresh-button:hover {
+    background-color: #5A7AD6;
+}
+
+/* 结果显示样式 */
+.result {
+    margin-top: 15px;
+    font-weight: bold;
+    padding: 10px;
+    border-radius: 8px;
+    text-align: center;
+    width: 100%;
+    word-wrap: break-word;
+}
+
+.correct {
+    color: #2ecc71;
+    background-color: #eafaf1;
+    border: 1px solid #d0f5d9;
+}
+
+.incorrect {
+    color: #e74c3c;
+    background-color: #fdedec;
+    border: 1px solid #f5d0d3;
+}
+
+/* 返回首页按钮 */
+.back-home {
+    text-align: center;
+    margin-top: 30px;
+    width: 100%;
+}
+
+.back-home button {
+    background-color: #7295E8;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 25px;
+}
+
+.back-home button::before {
+    content: "←";
+    margin-right: 8px;
+    font-size: 18px;
+}
+
+/* 响应式样式 - 移动端优化 */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+    
+    .section {
+        padding: 15px 10px;
+    }
+    
+    h1 {
+        font-size: 1.8em;
+        margin-bottom: 20px;
+    }
+    
+    .section-header {
+        flex-direction: column;
+        gap: 10px;
+        align-items: flex-start;
+    }
+    
+    .section-header h2 {
+        margin-bottom: 10px;
+    }
+    
+    .question {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        width: 100%;
+    }
+    
+    .question > span:first-child {
+        width: 100%;
+        margin-bottom: 5px;
+    }
+    
+    /* 修改：保持输入框和单位在同一行 */
+    .input-unit-group {
+        display: flex;
+        width: 100%;
+        align-items: center;
+    }
+    
+    .input-unit-group input {
+        flex: 1;
+        min-width: 0;
+        margin: 0 5px 0 0;
+    }
+    
+    .comparison-section .question {
+        font-size: 1.3em;
+        flex-direction: row;
+        justify-content: center;
+    }
+    
+    input {
+        box-sizing: border-box;
+        margin: 5px 0;
+    }
+    
+    button {
+        width: 100%;
+        box-sizing: border-box;
+        margin: 8px 0;
+        padding: 10px 10px;
+    }
+    
+    .unit-input {
+        width: 100%;
+        margin-left: 0;
+    }
+    
+    .comparison-buttons {
+        gap: 10px;
+        width: 100%;
+    }
+    
+    .comparison-buttons button {
+        width: 50px;
+        height: 50px;
+        font-size: 1.3em;
+        flex: 1;
+        max-width: 80px;
+    }
+    
+    .refresh-button {
+        overflow: visible;
+        white-space: nowrap;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 8px;
+    }
+    
+    .section {
+        padding: 12px 8px;
+    }
+    
+    .section-header h2 {
+        font-size: 1.1em;
+    }
+    
+    .question {
+        font-size: 1em;
+    }
+    
+    .comparison-section .question {
+        font-size: 1.1em;
+    }
+    
+    .comparison-buttons button {
+        width: 45px;
+        height: 45px;
+        font-size: 1.2em;
+        max-width: 60px;
+    }
+    
+    .refresh-button {
+        padding: 6px 12px;
+        font-size: 0.85em;
+    }
+    
+    .target-unit {
+        margin: 0 5px;
+        font-size: 0.9em;
+    }
+    
+    input {
+        font-size: 1em;
+        padding: 6px;
+    }
+} 

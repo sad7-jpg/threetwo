@@ -5,110 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>乘法练习</title>
     <link rel="stylesheet" href="../CSS/styles.css">
-    <style>
-        .practice-container {
-            text-align: center;
-            padding: 20px;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            margin-bottom: 20px;
-        }
-
-        .question {
-            font-size: 32px;
-            margin: 30px 0;
-            min-height: 50px;
-        }
-
-        .answer {
-            font-size: 24px;
-            color: #2196F3;
-            margin: 20px 0;
-            min-height: 36px;
-        }
-
-        .button-group {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            margin: 20px 0;
-        }
-
-        .practice-button {
-            padding: 12px 24px;
-            border: none;
-            border-radius: 4px;
-            font-size: 16px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .generate-btn {
-            background-color: #4CAF50;
-            color: white;
-        }
-
-        .show-answer-btn {
-            background-color: #2196F3;
-            color: white;
-        }
-
-        .batch-generate-btn {
-            background-color: #FF9800;
-            color: white;
-        }
-
-        .practice-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-        }
-
-        .questions-list {
-            text-align: left;
-            margin: 20px auto;
-            max-width: 600px;
-        }
-
-        .question-item {
-            margin: 15px 0;
-            padding: 10px;
-            background: #f8f9fa;
-            border-radius: 4px;
-        }
-
-        .batch-controls {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 20px;
-            margin-bottom: 20px;
-        }
-
-        .number-input {
-            padding: 8px;
-            width: 80px;
-            border: 2px solid #ddd;
-            border-radius: 4px;
-            font-size: 16px;
-            text-align: center;
-        }
-
-        .answer-hidden {
-            display: none;
-        }
-
-        .input-group {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .input-label {
-            color: #666;
-            font-size: 16px;
-        }
-    </style>
+    <link rel="stylesheet" href="../CSS/multiplication.css">
 </head>
 <body>
     <div class="container">
@@ -209,6 +106,11 @@
             value = Math.min(Math.max(value, 1), 20);
             this.value = value;
         });
+        
+        // 页面加载时自动生成一道题目
+        window.onload = function() {
+            generateQuestion();
+        };
     </script>
 </body>
 </html> 

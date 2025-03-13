@@ -156,22 +156,123 @@ function generateUnitQuestion() {
     document.getElementById('unitResult').textContent = '';
 }
 
-// 生成大小比较题目
+// 修改大小比较题目生成函数
 function generateComparisonQuestion() {
-    const num1 = Math.floor(Math.random() * 1000);
-    const num2 = Math.floor(Math.random() * 1000);
-    const units = ['克', '千克', '吨'];
-    const unit = units[Math.floor(Math.random() * units.length)];
+    // 先清除结果提示
+    document.getElementById('comparisonResult').textContent = '';
+    document.getElementById('comparisonResult').className = 'result';
+    
+    // 随机选择类别：长度或重量
+    const categories = ['length', 'weight'];
+    const category = categories[Math.floor(Math.random() * categories.length)];
+    
+    // 根据类别选择单位
+    let units;
+    if (category === 'length') {
+        units = ['毫米', '厘米', '米', '千米'];
+    } else {
+        units = ['克', '千克', '吨'];
+    }
+    
+    // 选择两个不同的单位
+    let unitIndex1 = Math.floor(Math.random() * units.length);
+    let unitIndex2;
+    do {
+        unitIndex2 = Math.floor(Math.random() * units.length);
+    } while (unitIndex1 === unitIndex2);
+    
+    const unit1 = units[unitIndex1];
+    const unit2 = units[unitIndex2];
+    
+    // 生成两个数字
+    let num1, num2;
+    
+    // 根据单位调整数字大小范围
+    if (category === 'length') {
+        switch (unit1) {
+            case '毫米': num1 = Math.floor(Math.random() * 900) + 100; break; // 100-999毫米
+            case '厘米': num1 = Math.floor(Math.random() * 90) + 10; break;  // 10-99厘米
+            case '米': num1 = Math.floor(Math.random() * 90) + 1; break;     // 1-90米
+            case '千米': num1 = Math.floor(Math.random() * 9) + 1; break;     // 1-9千米
+        }
+        
+        switch (unit2) {
+            case '毫米': num2 = Math.floor(Math.random() * 900) + 100; break;
+            case '厘米': num2 = Math.floor(Math.random() * 90) + 10; break;
+            case '米': num2 = Math.floor(Math.random() * 90) + 1; break;
+            case '千米': num2 = Math.floor(Math.random() * 9) + 1; break;
+        }
+    } else {
+        switch (unit1) {
+            case '克': num1 = Math.floor(Math.random() * 900) + 100; break;    // 100-999克
+            case '千克': num1 = Math.floor(Math.random() * 90) + 10; break;    // 10-99千克
+            case '吨': num1 = Math.floor(Math.random() * 9) + 1; break;        // 1-9吨
+        }
+        
+        switch (unit2) {
+            case '克': num2 = Math.floor(Math.random() * 900) + 100; break;
+            case '千克': num2 = Math.floor(Math.random() * 90) + 10; break;
+            case '吨': num2 = Math.floor(Math.random() * 9) + 1; break;
+        }
+    }
+    
+    // 将值转换为基本单位（毫米或克）进行比较
+    let value1 = convertToBaseUnit(num1, unit1, category);
+    let value2 = convertToBaseUnit(num2, unit2, category);
+    
+    // 确定答案
+    let answer;
+    if (value1 > value2) {
+        answer = '>';
+    } else if (value1 < value2) {
+        answer = '<';
+    } else {
+        answer = '=';
+    }
     
     currentQuestions.comparison = {
         num1: num1,
         num2: num2,
-        unit: unit,
-        answer: num1 > num2 ? '>' : (num1 < num2 ? '<' : '=')
+        unit1: unit1,
+        unit2: unit2,
+        answer: answer,
+        category: category
     };
 
     document.getElementById('comparisonQuestion').textContent = 
-        `${num1}${unit} __ ${num2}${unit}`;
+        `${num1}${unit1} __ ${num2}${unit2}`;
+}
+
+// 添加辅助函数：将值转换为基本单位（毫米或克）
+function convertToBaseUnit(value, unit, category) {
+    if (category === 'length') {
+        switch (unit) {
+            case '毫米': return value;
+            case '厘米': return value * 10;
+            case '米': return value * 1000;
+            case '千米': return value * 1000000;
+        }
+    } else {
+        switch (unit) {
+            case '克': return value;
+            case '千克': return value * 1000;
+            case '吨': return value * 1000000;
+        }
+    }
+    return value;
+}
+
+// 修改检查比较答案函数
+function checkComparison(answer) {
+    const result = document.getElementById('comparisonResult');
+    
+    if (answer === currentQuestions.comparison.answer) {
+        result.textContent = '正确！👍';
+        result.className = 'result correct';
+    } else {
+        result.textContent = '不对哦，再试一次';
+        result.className = 'result incorrect';
+    }
 }
 
 // 生成整数单位转换题目
@@ -269,19 +370,6 @@ function checkUnitAnswer() {
         result.className = 'result correct';
     } else {
         result.textContent = `不对哦，正确答案是 ${currentQuestions.unit.unit}`;
-        result.className = 'result incorrect';
-    }
-}
-
-// 检查大小比较答案
-function checkComparison(answer) {
-    const result = document.getElementById('comparisonResult');
-    
-    if (answer === currentQuestions.comparison.answer) {
-        result.textContent = '正确！👍';
-        result.className = 'result correct';
-    } else {
-        result.textContent = '不对哦，再试一次';
         result.className = 'result incorrect';
     }
 }
