@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>24点游戏</title>
+    <style>
+        body {
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f0f8ff;
+            color: #2c3e50;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 30px;
+            font-size: 2.2em;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+        .game-area {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .numbers {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 30px 0;
+        }
+        .number-card {
+            width: 120px;
+            height: 174px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: relative;
+            user-select: none;
+        }
+        .number-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        .number-card.selected {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            filter: brightness(0.9);
+            pointer-events: none;
+        }
+        .card-pattern,
+        .number-card::before,
+        .number-card::after {
+            display: none;
+        }
+        .operators {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .operator {
+            width: 50px;
+            height: 50px;
+            background-color: #3498db;
+            color: white;
+            font-size: 1.5em;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .operator:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+        }
+        .expression {
+            font-size: 1.8em;
+            margin: 30px 0;
+            min-height: 50px;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        button:hover {
+            background-color: #45a049;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.2em;
+            transition: all 0.3s ease;
+        }
+        .correct {
+            color: #2ecc71;
+            background-color: #eafaf1;
+            border: 2px solid #2ecc71;
+        }
+        .incorrect {
+            color: #e74c3c;
+            background-color: #fdedec;
+            border: 2px solid #e74c3c;
+        }
+        .solution {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            display: none;
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .back-home {
+            margin-top: 30px;
+            text-align: center;
+        }
+        @media (max-width: 768px) {
+            .numbers {
+                flex-wrap: wrap;
+            }
+            .controls {
+                flex-direction: column;
+            }
+            button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>24点游戏</h1>
+        <div class="game-area">
+            <div class="numbers" id="numbers"></div>
+            <div class="operators">
+                <button class="operator" onclick="addOperator('+')">+</button>
+                <button class="operator" onclick="addOperator('-')">-</button>
+                <button class="operator" onclick="addOperator('×')">×</button>
+                <button class="operator" onclick="addOperator('÷')">÷</button>
+                <button class="operator" onclick="addBracket('(')">(</button>
+                <button class="operator" onclick="addBracket(')')">)</button>
+            </div>
+            <div class="expression" id="expression"></div>
+            <div class="controls">
+                <button onclick="generateNumbers()">新游戏</button>
+                <button onclick="checkResult()">检查答案</button>
+                <button onclick="showSolution()">查看提示</button>
+                <button onclick="clearExpression()">清除</button>
+            </div>
+            <div class="result" id="result"></div>
+            <div class="solution" id="solution"></div>
+        </div>
+        <div class="back-home">
+            <a href="../index.html">
+                <button>返回首页</button>
+            </a>
+        </div>
+    </div>
+    <script src="../JS/twenty_four.js"></script>
+</body>
+</html> 
