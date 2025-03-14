@@ -133,6 +133,17 @@ img, table, iframe, div, p {
     margin-bottom: 8px;
 }
 
+.class-name {
+    display: inline-block;
+    background-color: #FF9E2C;
+    color: white;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 0.85em;
+    margin-left: 8px;
+    font-weight: bold;
+}
+
 .homework-content {
     margin: 10px 0;
     color: #343a40;
