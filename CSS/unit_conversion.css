@@ -43,20 +43,24 @@ h1 {
 }
 
 .section-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    align-items: center !important;
     margin-bottom: 15px;
     border-bottom: 2px solid #eee;
     padding-bottom: 10px;
     width: 100%;
-    flex-wrap: wrap;
 }
 
 .section-header h2 {
     color: #2c3e50;
     margin: 0;
     font-size: 1.3em;
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .question {
@@ -65,7 +69,7 @@ h1 {
     display: flex;
     align-items: center;
     gap: 10px;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     width: 100%;
 }
 
@@ -77,6 +81,7 @@ h1 {
     gap: 5px;
     width: auto;
     max-width: 100%;
+    margin-right: 10px;
 }
 
 /* 比较部分样式 */
@@ -124,6 +129,7 @@ input {
     border-radius: 8px;
     transition: border-color 0.3s;
     max-width: 100%;
+    width: 120px;
 }
 
 input:focus {
@@ -171,6 +177,8 @@ button:hover {
     font-size: 0.9em;
     background-color: #7295E8;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    white-space: nowrap;
+    margin-left: 10px;
 }
 
 .refresh-button:hover {
@@ -237,38 +245,43 @@ button:hover {
     }
     
     .section-header {
-        flex-direction: column;
-        gap: 10px;
-        align-items: flex-start;
+        flex-direction: row !important;
+        gap: 5px;
+        align-items: center;
+        flex-wrap: nowrap !important;
     }
     
     .section-header h2 {
-        margin-bottom: 10px;
+        font-size: 1.1em;
+        margin: 0;
+        flex: 1;
+        min-width: 0;
     }
     
     .question {
         display: flex;
-        flex-direction: column;
-        align-items: flex-start;
+        flex-direction: row;
+        align-items: center;
         gap: 10px;
         width: 100%;
+        flex-wrap: nowrap;
     }
     
     .question > span:first-child {
-        width: 100%;
-        margin-bottom: 5px;
+        width: auto;
+        margin-bottom: 0;
     }
     
     /* 修改：保持输入框和单位在同一行 */
     .input-unit-group {
         display: flex;
-        width: 100%;
+        width: auto;
         align-items: center;
+        margin-right: 10px;
     }
     
     .input-unit-group input {
-        flex: 1;
-        min-width: 0;
+        width: 100px;
         margin: 0 5px 0 0;
     }
     
@@ -281,18 +294,19 @@ button:hover {
     input {
         box-sizing: border-box;
         margin: 5px 0;
+        width: 100px;
     }
     
     button {
-        width: 100%;
         box-sizing: border-box;
         margin: 8px 0;
         padding: 10px 10px;
+        width: auto;
     }
     
     .unit-input {
-        width: 100%;
-        margin-left: 0;
+        width: 70px;
+        margin-left: 5px;
     }
     
     .comparison-buttons {
@@ -309,8 +323,12 @@ button:hover {
     }
     
     .refresh-button {
-        overflow: visible;
-        white-space: nowrap;
+        padding: 6px 10px;
+        font-size: 0.8em;
+        min-width: 85px;
+        flex-shrink: 0;
+        width: auto;
+        margin: 0;
     }
 }
 
@@ -324,11 +342,12 @@ button:hover {
     }
     
     .section-header h2 {
-        font-size: 1.1em;
+        font-size: 1em;
     }
     
     .question {
         font-size: 1em;
+        gap: 5px;
     }
     
     .comparison-section .question {
@@ -343,8 +362,11 @@ button:hover {
     }
     
     .refresh-button {
-        padding: 6px 12px;
+        padding: 6px 8px;
         font-size: 0.85em;
+        min-width: 80px;
+        width: auto;
+        margin: 0;
     }
     
     .target-unit {
@@ -355,5 +377,15 @@ button:hover {
     input {
         font-size: 1em;
         padding: 6px;
+        width: 90px;
+    }
+    
+    .unit-input {
+        width: 60px;
+        margin-left: 3px;
+    }
+    
+    .input-unit-group {
+        margin-right: 5px;
     }
 } 
