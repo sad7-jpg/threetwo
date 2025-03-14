@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>同台竞技</title>
+    <link rel="stylesheet" href="../CSS/styles.css">
+    <link rel="stylesheet" href="../CSS/competition.css">
+</head>
+<body>
+    <div class="container">
+        <h1>同台竞技</h1>
+        
+        <div class="competition-intro">
+            <p>本页面从以下六种题型中随机选择四种（必定包含两位数乘两位数）：乘法口算、两位数乘两位数、单位认知、比较大小、单位转换和混合运算，共出8道题。左右两边选手做相同类型但不同内容的题目，每种类型题目数量相等，考验同等难度下的解题能力。</p>
+            <button id="startCompetition" class="start-button">开始比赛</button>
+        </div>
+        
+        <div id="competitionArea" class="competition-area hidden">
+            <div class="player-section">
+                <div class="player player-left">
+                    <h2>选手一 <span id="timerLeft" class="timer">00:00</span></h2>
+                    <div class="progress-indicator">
+                        <span id="progressLeft">第 1 题 / 共 8 题</span>
+                    </div>
+                    <div id="questionsLeft" class="questions-container">
+                        <!-- 动态生成题目 -->
+                    </div>
+                    <div class="navigation-buttons">
+                        <button id="nextLeft" class="next-button">下一题</button>
+                        <button id="submitLeft" class="submit-button" disabled>提交全部答案</button>
+                    </div>
+                    <div id="resultsLeft" class="results hidden"></div>
+                </div>
+                
+                <div class="player player-right">
+                    <h2>选手二 <span id="timerRight" class="timer">00:00</span></h2>
+                    <div class="progress-indicator">
+                        <span id="progressRight">第 1 题 / 共 8 题</span>
+                    </div>
+                    <div id="questionsRight" class="questions-container">
+                        <!-- 动态生成题目 -->
+                    </div>
+                    <div class="navigation-buttons">
+                        <button id="nextRight" class="next-button">下一题</button>
+                        <button id="submitRight" class="submit-button" disabled>提交全部答案</button>
+                    </div>
+                    <div id="resultsRight" class="results hidden"></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="back-section">
+            <a href="../index.html" class="back-button">返回首页</a>
+        </div>
+    </div>
+
+    <script src="../JS/competition.js"></script>
+</body>
+</html> 
