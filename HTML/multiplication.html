@@ -12,6 +12,17 @@
         <h1>乘法练习</h1>
         
         <div class="practice-container">
+            <div class="mental-math">
+                <h3>口算练习</h3>
+                <div class="button-group">
+                    <button class="practice-button generate-btn" onclick="generateMentalMath()">生成口算题</button>
+                    <button class="practice-button show-answer-btn" onclick="toggleMentalMathAnswers()">显示/隐藏答案</button>
+                </div>
+                <div class="mental-math-questions" id="mentalMathQuestions"></div>
+            </div>
+        </div>
+        
+        <div class="practice-container">
             <div class="single-question">
                 <h3>随机乘法题</h3>
                 <div class="question" id="question">点击"生成题目"开始练习</div>
@@ -45,72 +56,6 @@
         </div>
     </div>
 
-    <script>
-        let currentAnswer = 0;
-
-        function generateTwoDigitNumber() {
-            return Math.floor(Math.random() * 90) + 10;
-        }
-
-        function generateQuestion() {
-            const num1 = generateTwoDigitNumber();
-            const num2 = generateTwoDigitNumber();
-            currentAnswer = num1 * num2;
-            document.getElementById('question').textContent = `${num1} × ${num2} = ?`;
-            document.getElementById('answer').textContent = '';
-        }
-
-        function showAnswer() {
-            if (currentAnswer === 0) {
-                document.getElementById('answer').textContent = '请先生成题目';
-                return;
-            }
-            document.getElementById('answer').textContent = `答案：${currentAnswer}`;
-        }
-
-        function generateBatch() {
-            const count = parseInt(document.getElementById('questionCount').value) || 5;
-            const batchSize = Math.min(Math.max(count, 1), 20); // 限制在1-20题之间
-            let html = '';
-            
-            for (let i = 0; i < batchSize; i++) {
-                const num1 = generateTwoDigitNumber();
-                const num2 = generateTwoDigitNumber();
-                const answer = num1 * num2;
-                
-                html += `
-                    <div class="question-item">
-                        <div>第 ${i + 1} 题：${num1} × ${num2} = ?</div>
-                        <div class="answer-hidden batch-answer" style="color: #2196F3; margin-top: 8px;">答案：${answer}</div>
-                    </div>
-                `;
-            }
-            
-            document.getElementById('batchQuestions').innerHTML = html;
-        }
-
-        function toggleBatchAnswers() {
-            const answers = document.querySelectorAll('.batch-answer');
-            answers.forEach(answer => {
-                if (answer.classList.contains('answer-hidden')) {
-                    answer.classList.remove('answer-hidden');
-                } else {
-                    answer.classList.add('answer-hidden');
-                }
-            });
-        }
-
-        // 限制输入数量在1-20之间
-        document.getElementById('questionCount').addEventListener('change', function() {
-            let value = parseInt(this.value) || 5;
-            value = Math.min(Math.max(value, 1), 20);
-            this.value = value;
-        });
-        
-        // 页面加载时自动生成一道题目
-        window.onload = function() {
-            generateQuestion();
-        };
-    </script>
+    <script src="../JS/multiplication.js"></script>
 </body>
 </html> 

@@ -320,4 +320,85 @@ img, table, iframe, div, p {
     font-size: 32px;
     margin-bottom: 10px;
     padding: 0;
+}
+
+/* 返回首页按钮优化样式 */
+.back-section {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.back-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 24px;
+    background-color: #4a6fa5;
+    color: white;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(74, 111, 165, 0.3);
+    transition: all 0.3s ease;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.back-button:before {
+    content: "←";
+    margin-right: 8px;
+    font-size: 18px;
+    transition: transform 0.3s ease;
+}
+
+.back-button:hover {
+    background-color: #3a5982;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(74, 111, 165, 0.4);
+}
+
+.back-button:hover:before {
+    transform: translateX(-5px);
+}
+
+@media (max-width: 768px) {
+    .back-button {
+        padding: 10px 20px;
+        font-size: 14px;
+        width: 80%;
+        max-width: 300px;
+    }
+}
+
+/* 选择题选项样式 */
+.option-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.option-button {
+    flex: 1;
+    padding: 8px 12px;
+    background-color: #f0f0f0;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: center;
+}
+
+.option-button:hover {
+    background-color: #e3e3e3;
+    border-color: #ccc;
+}
+
+.option-button.selected {
+    background-color: #d4e6f1;
+    border-color: #7fb3d5;
+    color: #2874a6;
 } 

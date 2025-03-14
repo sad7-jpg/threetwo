@@ -18,6 +18,78 @@
     margin-bottom: 20px;
 }
 
+/* 口算练习样式 */
+.mental-math {
+    width: 100%;
+}
+
+.mental-math-description {
+    text-align: left;
+    margin: 15px 0;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    border-left: 4px solid #FF9E2C;
+}
+
+.math-types {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 10px;
+    padding-left: 20px;
+    margin: 10px 0;
+}
+
+.math-types li {
+    color: #555;
+    line-height: 1.6;
+}
+
+.mental-math-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.mental-math-item {
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    text-align: left;
+    transition: all 0.3s ease;
+    border: 1px solid #eee;
+}
+
+.mental-math-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border-color: #FF9E2C;
+}
+
+.mental-question {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.mental-answer {
+    font-weight: bold;
+    color: #2196F3;
+    padding: 5px 10px;
+    background-color: #e3f2fd;
+    border-radius: 4px;
+    display: inline-block;
+}
+
+.print-btn {
+    background-color: #7295E8;
+}
+
+.print-btn:hover {
+    background-color: #5A7AD6;
+}
+
 .question {
     font-size: 32px;
     margin: 30px 0;
@@ -203,6 +275,14 @@
         padding: 12px;
         font-size: 16px;
     }
+    
+    .mental-math-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .math-types {
+        grid-template-columns: 1fr;
+    }
 }
 
 @media (max-width: 480px) {
@@ -213,5 +293,9 @@
     .back-button {
         padding: 10px 15px;
         font-size: 14px;
+    }
+    
+    .mental-question {
+        font-size: 16px;
     }
 } 
